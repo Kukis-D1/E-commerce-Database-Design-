@@ -1,0 +1,64 @@
+CREATE TABLE Customer
+(
+  Address VARCHAR(100) NOT NULL,
+  State VARCHAR(20) NOT NULL,
+  CustomerID INT NOT NULL,
+  FirstName VARCHAR(20) NOT NULL,
+  PhoneNumber VARCHAR(20) NOT NULL,
+  LastName VARCHAR(20) NOT NULL,
+  PRIMARY KEY (CustomerID)
+);
+
+CREATE TABLE Order
+(
+  OrderID INT NOT NULL,
+  OrderDate DATE NOT NULL,
+  OrderType VARCHAR(30) NOT NULL,
+  CustomerID INT NOT NULL,
+  PRIMARY KEY (OrderID),
+  FOREIGN KEY (CustomerID) REFERENCES Customer(CustomerID)
+);
+
+CREATE TABLE Product
+(
+  ProductID INT NOT NULL,
+  ProductName VARCHAR(30) NOT NULL,
+  ProductDescription VARCHAR(100) NOT NULL,
+  ProductUnitPrice NUMERIC NOT NULL,
+  ProductQuantity INT NOT NULL,
+  ProductPrice NUMERIC NOT NULL,
+  PRIMARY KEY (ProductID)
+);
+
+CREATE TABLE OrderItem
+(
+  OrderItemID INT NOT NULL,
+  OrderItemsQuantity NUMERIC NOT NULL,
+  OrderID INT NOT NULL,
+  ProductID INT NOT NULL,
+  PRIMARY KEY (OrderItemID),
+  FOREIGN KEY (OrderID) REFERENCES Order(OrderID),
+  FOREIGN KEY (ProductID) REFERENCES Product(ProductID)
+);
+
+CREATE TABLE Payment
+(
+  PaymentID INT NOT NULL,
+  PaymetMethod VARCHAR(30) NOT NULL,
+  PaymentDate DATE NOT NULL,
+  PaymentAmount NUMERIC NOT NULL,
+  OrderID INT NOT NULL,
+  PRIMARY KEY (PaymentID),
+  FOREIGN KEY (OrderID) REFERENCES Order(OrderID)
+);
+
+CREATE TABLE ProductPaymt
+(
+  ProductpaymtID INT NOT NULL,
+  ProductpaymtProDate DATE NOT NULL,
+  ProductID INT NOT NULL,
+  PaymentID INT NOT NULL,
+  PRIMARY KEY (ProductpaymtID),
+  FOREIGN KEY (ProductID) REFERENCES Product(ProductID),
+  FOREIGN KEY (PaymentID) REFERENCES Payment(PaymentID)
+);
