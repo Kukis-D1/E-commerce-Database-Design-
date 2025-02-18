@@ -7,3 +7,4 @@ The Ecommerce database design entity relationahip diagrams and Ecommerce Schema 
 Ecommerce Schema creation SQL codes was crreated.
 The Ecommerce Database was created using SQL Server.
 The database schema was reviewed for bugs or design errors.
+Tools Used Include: Google Doc, Erwin/ERDPlus, SQL server, Microsoft WORD.
